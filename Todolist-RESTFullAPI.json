@@ -1,0 +1,112 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Todo List RestFull API",
+    "version": "1",
+    "description": "Open API for todo list RestFull API",
+    "contact": {
+      "name": "Diego"
+    }
+  },
+  "servers": [
+    {
+      "description": "TodoList RESTFull API Server",
+      "url": "https://{environment}.programmerzamannow.com/api/v1",
+      "variables": {
+        "environment": {
+          "description": "Server environment",
+          "default": "dev",
+          "enum": ["dev", "prod"]
+        }
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Youtube Tutorial programmerzamannow",
+    "url": "https://www.youtube.com/watch?v=o5b6TYSNK5c"
+  },
+  "paths": {
+    "/todolist": {
+      "get": {
+        "summary": "Get all todolist",
+        "description": "Get all active todolist by default",
+        "parameters": [
+          {
+            "name": "includeDone",
+            "in": "query",
+            "required": false,
+            "description": "Include done todolist in the result",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter todolist by name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new todolist",
+        "description": "Create new todolist to database",
+        "responses": {
+          "201": {
+            "description": "Todolist created"
+          }
+        }
+      }
+    },
+    "/todolist/{todolistId}": {
+      "put": {
+        "summary": "Update existing todolist",
+        "description": "Update existing todolist to database",
+        "parameters": [
+          {
+            "name": "todolistId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the todolist to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todolist updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete existing todolist",
+        "description": "Delete existing todolist from database",
+        "parameters": [
+          {
+            "name": "todolistId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the todolist to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Todolist deleted"
+          }
+        }
+      }
+    }
+  }
+}

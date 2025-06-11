@@ -1,0 +1,78 @@
+{
+    "openapi" : "3.0.3",
+    "info" : {
+        "title": "Todo List RestFull API",
+        "version": "1",
+        "description": "Open APU for todo list RestFull API",
+        "contact": {
+            "name": "Diego"
+        }
+    }, 
+    "servers": [
+        {
+            "description": "TodoList RESTFull API Server",
+            "url": "https://{environment}.programmerzamannow.com/api/v1",
+            "variables": {
+                "environment" : {
+                    "description": "Server environment",
+                    "default": "dev",
+                    "enum": [
+                        "dev",
+                        "prod"
+                    ]
+                }
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Youtube Tutorial programmerzamannow",
+        "url": "https://www.youtube.com/watch?v=o5b6TYSNK5c"
+    },
+    "paths": {
+        "/todolist" :{
+            "get" :{
+                "summary": "Get all todolist",
+                "description": "Get all active todolist by default",
+                "responses": {},
+                "parameters": [
+                    {
+                        "name": "include done",
+                        "required": false,
+                        "in": "query",
+                        "description": "Include done todolist in the result"
+                    },
+                    {
+                        "name": "name",
+                        "required": false,
+                        "in": "query",
+                        "description": "filter todolist by name"
+                    }
+                ]
+            },
+            "post":{
+                "summary": "Create new todolist",
+                "description": "Create new todolist to database",
+                "responses": {}
+        },
+        "/todolist/{todolistId}" :{
+            "put":{
+                "summary": "Update existing todolist",
+                "description": "Update existing todolist to database",
+                "responses": {}
+            },
+            "delete":{
+                "summary": "Delete existing todolist",
+                "description": "Delete existing todolist from database",
+                "responses": {},
+                "parameters": [
+                    {
+                        "name": "Delete data todolist",
+                        "required": true,
+                        "in": "path",
+                        "description": "Delete data todolist by path"
+                    }
+                ]
+            }
+        }
+    }
+}

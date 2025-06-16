@@ -277,4 +277,60 @@
 
 ```
 
-# last update := SCHEMA 44:07
+## Schema
+  Standarnya menggunakan JSOM Schema, Mendukung JSON schema validation (https://jsonschema.dev/)
+
+  ```
+  {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter todolist by name",
+            "schema": {
+              "type": "string",
+              "nullable": false,
+              "maxLength": 50
+            }
+          }
+```
+
+## Request Body
+  -Request Body Object
+    -description
+    -content -> Map [string, Media Type, Object] -> required
+    -required -> boolean
+  -Media Type Object
+    -Schema
+    -Example / Examples
+    -encoding
+
+```
+"requestBody":{
+          "required": true,
+          "content": {
+            "application/json" : {
+              "schema":{
+                
+              }
+            }
+          }
+        }
+```
+
+## Example
+  data contoh yang bisa ditambahkan di parameter, request body, response body
+
+```
+"examples": {
+              "exam" :{
+                "value" : "Example satu"
+              },
+              "other examp" :{
+                "value" :"Example satunya"
+              }
+            }
+```
+
+
+
+# last update := Response Body 1:13:22

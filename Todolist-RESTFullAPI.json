@@ -37,7 +37,8 @@
             "required": false,
             "description": "Include done todolist in the result",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "default": true
             }
           },
           {
@@ -46,7 +47,16 @@
             "required": false,
             "description": "Filter todolist by name",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "maxLength": 50
+            },
+            "examples": {
+              "exam" :{
+                "value" : "Example satu"
+              },
+              "other examp" :{
+                "value" :"Example satunya"
+              }
             }
           }
         ],
@@ -62,6 +72,55 @@
         "responses": {
           "201": {
             "description": "Todolist created"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "priority"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 5
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 1
+                  },
+                  "tags":{
+                    "type": "array",
+                    "required":false,
+                    "minLength": 1,
+                    "items":{
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "examples":{
+                "exampleRequestBody" :{
+                  "description" : "Example on request Body Post",
+                  "value":{
+                    "name" : "Java",
+                    "priority" : 1,
+                    "tags" : ["Java", "Javascript"]
+                  }
+                },
+                "exampleRequestBodyNew" :{
+                  "description" : "Example on request Body Post New",
+                  "value":{
+                    "name" : "Java",
+                    "priority" : 1,
+                    "tags" : ["Java", "Javascript" ,"JS"]
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -84,6 +143,47 @@
         "responses": {
           "200": {
             "description": "Todolist updated"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "priority"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 5
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 1
+                  },
+                  "tags":{
+                     "type": "array",
+                    "required": false,
+                    "minLength": 1,
+                    "items":{
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "example":{
+                "exampleRequestBody" :{
+                  "description" : "Example on request Body Put",
+                  "value":{
+                    "name" : "Java",
+                    "priority" : 3,
+                    "tags" : ["PHP", "Laravel"]
+                  }
+                }
+              }
+            }
           }
         }
       },
